@@ -8,11 +8,11 @@ the lexical analyzer, the parser, the semantic analyzer and immediate code gener
 So with that being said, let's see what works and what doesn't (what needs to be implemented):
 
 WORKING:
-keywords
-ids
-numbers
+keywords,
+ids,
+numbers,
 delimiting symbols
 
 NOT WORKING:
-symbol table 
+symbol table,
 rationalizing between comments and non-comment lines
