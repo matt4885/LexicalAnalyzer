@@ -1,59 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Compiler
+namespace LexicalAnalyzer
 {   
     public class LexicalAnalyzer
     {
-        System.IO.StreamReader _file;
-        List<Tuple<string, string, bool>> symbolList;
+        private readonly System.IO.StreamReader _file;
         public LexicalAnalyzer(System.IO.StreamReader file)
         {
             _file = file;
         }
 
-        public static void compareKeyword(string builtString)
+        public static void CompareKeyword(string builtString)
         {
-            if (builtString.Equals("int"))
+            switch (builtString)
             {
-                Console.WriteLine("keyword: int");
+                case "int":
+                case "void":
+                case "char":
+                case "else":
+                case "if":
+                case "while":
+                case "return":
+                    Console.WriteLine($"keyword: {builtString}");
+                    break;
+                default:
+                    if (!(builtString.Equals("")))
+                    {
+                        var lexNumber = 0.0f;
+                        var checkFloat = float.TryParse(builtString, out lexNumber);
+                        if (checkFloat)
+                            Console.WriteLine("number: " + lexNumber);
+                        else
+                            Console.WriteLine("id: " + builtString);
+                    }
+                    break;
             }
-            else if (builtString.Equals("void"))
-            {
-                Console.WriteLine("keyword: void");
-            }
-            else if (builtString.Equals("char"))
-            {
-                Console.WriteLine("keyword: char");
-            }
-            else if (builtString.Equals("else"))
-            {
-                Console.WriteLine("keyword: else");
-            }
-            else if (builtString.Equals("if"))
-            {
-                Console.WriteLine("keyword: if");
-            }
-            else if (builtString.Equals("while"))
-            {
-                Console.WriteLine("keyword: while");
-            }
-            else if (builtString.Equals("return"))
-            {
-                Console.WriteLine("keyword: return");
-            }
-            else
-            {
-                if (!(builtString.Equals("")))
-                {
-                    float lexNumber = 0.0f;
-                    bool checkFloat = float.TryParse(builtString, out lexNumber);
-                    if (checkFloat)
-                        Console.WriteLine("number: " + lexNumber);
-                    else
-                        Console.WriteLine("id: " + builtString);
-                }
-            }
+
         }//compareKeyword
   
         public void performLex()
@@ -69,87 +52,87 @@ namespace Compiler
                     switch (line[i])
                     {
                         case ';':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine(";");
                             building = "";
                             break;
                         case ',':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine(",");
                             building = "";
                             break;
                         case '!':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("!");
                             building = "";
                             break;
                         case '=':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("=");
                             building = "";
                             break;
                         case '+':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("+");
                             building = "";
                             break;
                         case '-':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("-");
                             building = "";
                             break;
                         case '/':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("/");
                             building = "";
                             break;
                         case '*':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("*");
                             building = "";
                             break;
                         case '>':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine(">");
                             building = "";
                             break;
                         case '<':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("<");
                             building = "";
                             break;
                         case '{':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("{");
                             building = "";
                             break;
                         case '}':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("}");
                             building = "";
                             break;
                         case ')':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine(")");
                             building = "";
                             break;
                         case '(':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("(");
                             building = "";
                             break;
                         case '[':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("[");
                             building = "";
                             break;
                         case ']':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             Console.WriteLine("]");
                             building = "";
                             break;
                         case ' ':
-                            compareKeyword(building);
+                            CompareKeyword(building);
                             building = "";
                             break;
                         default:
