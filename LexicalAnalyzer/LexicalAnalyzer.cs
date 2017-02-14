@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace LexicalAnalyzer
 {   
@@ -27,29 +26,26 @@ namespace LexicalAnalyzer
                 default:
                     if (!(builtString.Equals("")))
                     {
-                        var lexNumber = 0.0f;
+                        float lexNumber;
                         var checkFloat = float.TryParse(builtString, out lexNumber);
-                        if (checkFloat)
-                            Console.WriteLine("number: " + lexNumber);
-                        else
-                            Console.WriteLine("id: " + builtString);
+                        Console.WriteLine(checkFloat ? $"number: {lexNumber}" : $"id: {builtString}");
                     }
                     break;
             }
 
         }//compareKeyword
   
-        public void performLex()
+        public void PerformLex()
         {
             string line;
-            string building = "";
+            var building = "";
             while ((line = _file.ReadLine()) != null)
             {
                 if (!(line.Equals("")))
                     Console.WriteLine("INPUT: " + line);
-                for (int i = 0; i < line.Length; i++)
+                foreach (var t in line)
                 {
-                    switch (line[i])
+                    switch (t)
                     {
                         case ';':
                             CompareKeyword(building);
@@ -136,10 +132,10 @@ namespace LexicalAnalyzer
                             building = "";
                             break;
                         default:
-                            building += line[i].ToString();
+                            building += t.ToString();
                             break;
                     } //switch
-                }//for
+                }
             }//while
         }//performLex()
     }//LexicalAnalyzer
