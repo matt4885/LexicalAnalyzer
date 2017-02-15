@@ -1,17 +1,17 @@
 ﻿using System;
 using System.IO;
 
-namespace Compiler
+namespace LexicalAnalyzer
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
                 using (var file = new StreamReader(args[0]))
                 {
-                    LexicalAnalyzer.LexicalAnalyzer lex = new LexicalAnalyzer.LexicalAnalyzer(file);
+                    var lex = new LexicalAnalyzer(file);
                     lex.PerformLex();
                 }
 
@@ -19,7 +19,6 @@ namespace Compiler
             {
                 Console.WriteLine("Could not open file for reading. Check that the file exists and is in the source directory.");
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();              
             }
             
         }
