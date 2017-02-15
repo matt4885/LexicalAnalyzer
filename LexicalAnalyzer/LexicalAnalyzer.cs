@@ -34,18 +34,26 @@ namespace LexicalAnalyzer
             }
 
         }//compareKeyword
-  
+
+        /// <summary>
+        /// Begins the lexical analyzer by adding symbols to a built string
+        /// and then comparing them againstkeywords if we reach a delimiting character
+        /// </summary>
         public void PerformLex()
         {
             string line;
             var building = "";
             while ((line = _file.ReadLine()) != null)
             {
+                //Print only strings with content
                 if (!(line.Equals("")))
                     Console.WriteLine("INPUT: " + line);
+
+                //Comment handliing goes here
+
                 foreach (var t in line)
                 {
-                    if (!char.IsLetter(t) && t != ' ')
+                    if (!(char.IsLetter(t) || char.IsWhiteSpace(t)))
                     {
                         CompareKeyword(building);
                         Console.WriteLine(t);
