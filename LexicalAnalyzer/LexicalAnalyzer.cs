@@ -45,96 +45,16 @@ namespace LexicalAnalyzer
                     Console.WriteLine("INPUT: " + line);
                 foreach (var t in line)
                 {
-                    switch (t)
+                    if (!char.IsLetter(t) && t != ' ')
                     {
-                        case ';':
-                            CompareKeyword(building);
-                            Console.WriteLine(";");
-                            building = "";
-                            break;
-                        case ',':
-                            CompareKeyword(building);
-                            Console.WriteLine(",");
-                            building = "";
-                            break;
-                        case '!':
-                            CompareKeyword(building);
-                            Console.WriteLine("!");
-                            building = "";
-                            break;
-                        case '=':
-                            CompareKeyword(building);
-                            Console.WriteLine("=");
-                            building = "";
-                            break;
-                        case '+':
-                            CompareKeyword(building);
-                            Console.WriteLine("+");
-                            building = "";
-                            break;
-                        case '-':
-                            CompareKeyword(building);
-                            Console.WriteLine("-");
-                            building = "";
-                            break;
-                        case '/':
-                            CompareKeyword(building);
-                            Console.WriteLine("/");
-                            building = "";
-                            break;
-                        case '*':
-                            CompareKeyword(building);
-                            Console.WriteLine("*");
-                            building = "";
-                            break;
-                        case '>':
-                            CompareKeyword(building);
-                            Console.WriteLine(">");
-                            building = "";
-                            break;
-                        case '<':
-                            CompareKeyword(building);
-                            Console.WriteLine("<");
-                            building = "";
-                            break;
-                        case '{':
-                            CompareKeyword(building);
-                            Console.WriteLine("{");
-                            building = "";
-                            break;
-                        case '}':
-                            CompareKeyword(building);
-                            Console.WriteLine("}");
-                            building = "";
-                            break;
-                        case ')':
-                            CompareKeyword(building);
-                            Console.WriteLine(")");
-                            building = "";
-                            break;
-                        case '(':
-                            CompareKeyword(building);
-                            Console.WriteLine("(");
-                            building = "";
-                            break;
-                        case '[':
-                            CompareKeyword(building);
-                            Console.WriteLine("[");
-                            building = "";
-                            break;
-                        case ']':
-                            CompareKeyword(building);
-                            Console.WriteLine("]");
-                            building = "";
-                            break;
-                        case ' ':
-                            CompareKeyword(building);
-                            building = "";
-                            break;
-                        default:
-                            building += t.ToString();
-                            break;
-                    } //switch
+                        CompareKeyword(building);
+                        Console.WriteLine(t);
+                        building = string.Empty;
+                    }
+                    else
+                    {
+                        building += t.ToString();
+                    }
                 }
             }//while
         }//performLex()
