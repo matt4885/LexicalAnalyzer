@@ -29,9 +29,10 @@ namespace LexicalAnalyzer
         {
             switch (builtString)
             {
+                case "char":
                 case "int":
                 case "void":
-                case "char":
+                case "float":
                 case "else":
                 case "if":
                 case "while":
@@ -69,7 +70,7 @@ namespace LexicalAnalyzer
                 foreach (var t in line)
                 {
                     //If we reach a delimiting character compare against a keyword and write char to screen
-                    if (!(char.IsLetter(t) || char.IsWhiteSpace(t)))
+                    if (!(char.IsLetter(t) || char.IsWhiteSpace(t) || char.IsNumber(t) || t == '.'))
                     {
                         CompareKeyword(building);
                         Console.WriteLine(t);
@@ -80,7 +81,7 @@ namespace LexicalAnalyzer
                         building += t.ToString();
                     }
                 }
-            }//end readLine while
-        }//end performLex()
-    }//end LexicalAnalyzer class
-}//end namespace
+            }
+        }
+    }
+}

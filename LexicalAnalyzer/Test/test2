@@ -1,0 +1,12 @@
+int main(void)
+{
+    float aNumber = 3.14;
+    float bNumber = 314;
+    float cNumber = 3.14 + 314;
+}
+
+
+void test(int arg1, char arg2)
+{
+    return arg2 * arg1;
+}
