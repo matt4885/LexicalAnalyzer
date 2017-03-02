@@ -20,7 +20,6 @@ namespace LexicalAnalyzer
                 Console.WriteLine("Could not open file for reading. Check that the file exists and is in the source directory.");
                 Console.WriteLine(ex.Message);
             }
-            
         }
     }
 }
